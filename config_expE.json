@@ -1,0 +1,24 @@
+{
+  "prefix": "expE",
+  "sources": [
+    {
+      "name": "alirhayem",
+      "max_n": 0
+    },
+    {
+      "name": "dfire",
+      "max_n": 0
+    },
+    {
+      "name": "cctv",
+      "max_n": 0
+    }
+  ],
+  "model_size": "s",
+  "base_model": "yolo26s.pt",
+  "epochs": 60,
+  "patience": 20,
+  "imgsz": 640,
+  "enhance": true,
+  "note": "主模型: 容量最大(yolo26s), 提精度主力. 直接跑"
+}

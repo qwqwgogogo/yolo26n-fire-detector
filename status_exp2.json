@@ -1,0 +1,10 @@
+{
+  "exp": "exp2",
+  "model": "final_exp2_best.pt",
+  "maxmin_PR": 0.4412,
+  "best_conf": 0.03,
+  "P": 0.7431,
+  "R": 0.4412,
+  "reached_98": false,
+  "reached_conf": null
+}

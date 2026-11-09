@@ -1,0 +1,29 @@
+{
+  "note": "召回已由切片推理(tiled_eval)解决(EXP评估统一用tiled_eval, 官方1100无泄漏). 训练聚焦【精度+容量】. 已砍掉被expE覆盖的冗余expC(yolo26n+增强,容量小)/expD(yolo26s无增强). 直接上最强模型expE(yolo26s), 再精度攻坚expF(硬负+小火硬正,800)与蒸馏兜底expG.",
+  "eval_script": "tiled_eval.py",
+  "prongs": {
+    "A_broad_training": "宽数据训练: 域匹配数据(alirhayem/D-Fire/CCTV) + 增强 + 扩容大模型(expE为主)",
+    "B_distill": "蒸馏产线: 强教师(yolo26l在全部外部数据上训) -> 伪标签/响应KD -> 紧凑学生(expG)",
+    "C_targeted": "针对性样本: 按官方1100评估的FN/FP画像, 挖'相近颜色/车灯/烟里火光'硬负 + 小/远/暗火硬正(expF)"
+  },
+  "experiments": [
+    {"prefix": "expA", "sources": [{"name": "alirhayem", "max_n": 0}, {"name": "cctv", "max_n": 0}],
+     "model_size": "n", "base_model": "yolo26n.pt", "epochs": 40, "patience": 15, "imgsz": 640, "enhance": false,
+     "note": "已出: tiled maxmin=0.8677 (当前最佳干净模型). skip"},
+    {"prefix": "expB", "sources": [{"name": "alirhayem", "max_n": 0}, {"name": "dfire", "max_n": 0}, {"name": "cctv", "max_n": 0}],
+     "model_size": "n", "base_model": "yolo26n.pt", "epochs": 40, "patience": 15, "imgsz": 640, "enhance": false,
+     "note": "已出: tiled maxmin=0.8427. skip"},
+    {"prefix": "expE", "sources": [{"name": "alirhayem", "max_n": 0}, {"name": "dfire", "max_n": 0}, {"name": "cctv", "max_n": 0}],
+     "model_size": "s", "base_model": "yolo26s.pt", "epochs": 60, "patience": 20, "imgsz": 640, "enhance": true,
+     "note": "主模型: 容量最大(yolo26s), 提精度主力. 直接跑"},
+    {"prefix": "expF", "sources": [{"name": "alirhayem", "max_n": 0}, {"name": "dfire", "max_n": 0}, {"name": "cctv", "max_n": 0}],
+     "model_size": "s", "base_model": "yolo26s.pt", "epochs": 60, "patience": 20, "imgsz": 800, "enhance": true,
+     "targeted": true,
+     "targeted_pool": "targeted_pool",
+     "note": "精度攻坚: 在expE基础上 + targeted_pool(小火硬正9781 + 后续补的暖光/车灯硬负) + imgsz800提小目标. 跑前需把硬负池填实"},
+    {"prefix": "expG", "sources": [{"name": "alirhayem", "max_n": 0}, {"name": "dfire", "max_n": 0}, {"name": "cctv", "max_n": 0}],
+     "model_size": "s", "base_model": "yolo26s.pt", "epochs": 60, "patience": 20, "imgsz": 800, "enhance": true,
+     "distill": {"mode": "pseudo", "teacher_size": "l", "pseudo_pool": "distill_pseudo_pool"},
+     "note": "蒸馏兜底: 强教师yolo26l -> 伪标签distill_pseudo_pool -> 学生. 池空退化普通训练. 冲0.98的最后杠杆"}
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "exps": {
+    "expA": {
+      "exp": "expA",
+      "model": "final_expA_best.pt",
+      "eval_mode": "tiled",
+      "maxmin_PR": 0.8677,
+      "best_conf": 0.03,
+      "P": 0.8677,
+      "R": 0.8859,
+      "reached_98": false,
+      "reached_conf": null,
+      "rc": 0,
+      "done": true
+    },
+    "expB": {
+      "exp": "expB",
+      "model": "final_expB_best.pt",
+      "eval_mode": "tiled",
+      "maxmin_PR": 0.8041,
+      "best_conf": 0.03,
+      "P": 0.8041,
+      "R": 0.9558,
+      "reached_98": false,
+      "reached_conf": null,
+      "rc": 0,
+      "done": true
+    },
+    "expC": {
+      "prefix": "expC",
+      "error": "max tries(12) exceeded, no status",
+      "reached_98": false,
+      "maxmin_PR": -1,
+      "rc": -1,
+      "done": true
+    },
+    "expD": {
+      "prefix": "expD",
+      "error": "max tries(12) exceeded, no status",
+      "reached_98": false,
+      "maxmin_PR": -1,
+      "rc": -1,
+      "done": true
+    },
+    "expE": {
+      "prefix": "expE",
+      "error": "max tries(12) exceeded, no status",
+      "reached_98": false,
+      "maxmin_PR": -1,
+      "rc": -1,
+      "done": true
+    },
+    "expF": {
+      "prefix": "expF",
+      "reached_98": false,
+      "maxmin_PR": -1,
+      "rc": -1,
+      "done": false
+    },
+    "expG": {
+      "prefix": "expG",
+      "reached_98": false,
+      "maxmin_PR": -1,
+      "rc": -1,
+      "done": false
+    }
+  },
+  "loop_heartbeat_ts": "2026-08-14T18:48:54",
+  "last_update": "2026-08-14T18:48:54",
+  "exp1": {
+    "stage": "DONE",
+    "model": "final_ext_yolo26n_best.pt",
+    "note": "官方1100无泄漏; 训练仅用纯D-Fire; 数据有泄漏嫌疑, 仅作方法验证不参与冲98",
+    "best_conf": 0.03,
+    "P": 0.7546,
+    "R": 0.5262,
+    "maxmin_PR": 0.5262,
+    "reached_98": false
+  },
+  "exp1_done": true,
+  "done": false,
+  "last_error": null,
+  "note": "2026-08-14 修复: 中文路径 subprocess 中文乱码导致 tiled_eval 子进程起不来(expE/F/G 全无status). 已加 PYTHONUTF8=1 修复. expA/expB 已用切片(tiled)真实成绩登记. expE/F/G 重置为待跑."
+}

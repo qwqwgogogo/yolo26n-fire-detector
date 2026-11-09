@@ -1,0 +1,24 @@
+﻿# 虚拟环境 / 缓存
+.venv/
+.venv*
+__pycache__/
+*.pyc
+*.pyo
+
+# 日志 / 锁 / 训练输出
+*.log
+*.lock
+*.alive
+runs/
+
+# IDE / agent 工具目录
+.idea/
+.claude/
+.workbuddy/
+.vscode/
+
+# 数据集(本地复现时生成, 不入库)
+dataset_root/
+distill_pipeline/
+fire_yolo_export/
+labels.cache

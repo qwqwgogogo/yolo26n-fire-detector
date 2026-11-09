@@ -1,0 +1,23 @@
+{
+  "prefix": "expC",
+  "sources": [
+    {
+      "name": "alirhayem",
+      "max_n": 0
+    },
+    {
+      "name": "dfire",
+      "max_n": 0
+    },
+    {
+      "name": "cctv",
+      "max_n": 0
+    }
+  ],
+  "model_size": "n",
+  "base_model": "yolo26n.pt",
+  "epochs": 40,
+  "patience": 15,
+  "imgsz": 640,
+  "enhance": true
+}

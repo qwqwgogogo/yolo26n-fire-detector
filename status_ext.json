@@ -1,0 +1,11 @@
+{
+  "stage": "DONE",
+  "model": "final_ext_yolo26n_best.pt",
+  "note": "官方1100无泄漏; 训练仅用纯D-Fire",
+  "best_conf": 0.03,
+  "P": 0.7546,
+  "R": 0.5262,
+  "F1": 0.62,
+  "TP": 0,
+  "FP": 147
+}

@@ -1,0 +1,29 @@
+{
+  "prefix": "expG",
+  "sources": [
+    {
+      "name": "alirhayem",
+      "max_n": 0
+    },
+    {
+      "name": "dfire",
+      "max_n": 0
+    },
+    {
+      "name": "cctv",
+      "max_n": 0
+    }
+  ],
+  "model_size": "s",
+  "base_model": "yolo26s.pt",
+  "epochs": 60,
+  "patience": 20,
+  "imgsz": 800,
+  "enhance": true,
+  "distill": {
+    "mode": "pseudo",
+    "teacher_size": "l",
+    "pseudo_pool": "distill_pseudo_pool"
+  },
+  "note": "蒸馏产线: 先在全部外部数据上训强教师yolo26l -> 对distill_pseudo_pool(域匹配未标注帧)伪标签 -> 学生yolo26s在(真标+伪标)上训. imgsz=800提小目标. 池空则退化为普通训练(不崩)."
+}

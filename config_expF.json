@@ -1,0 +1,26 @@
+{
+  "prefix": "expF",
+  "sources": [
+    {
+      "name": "alirhayem",
+      "max_n": 0
+    },
+    {
+      "name": "dfire",
+      "max_n": 0
+    },
+    {
+      "name": "cctv",
+      "max_n": 0
+    }
+  ],
+  "model_size": "s",
+  "base_model": "yolo26s.pt",
+  "epochs": 60,
+  "patience": 20,
+  "imgsz": 800,
+  "enhance": true,
+  "targeted": true,
+  "targeted_pool": "targeted_pool",
+  "note": "精度攻坚: 在expE基础上 + targeted_pool(小火硬正9781 + 后续补的暖光/车灯硬负) + imgsz800提小目标. 跑前需把硬负池填实"
+}

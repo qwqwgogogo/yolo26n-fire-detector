@@ -1,0 +1,19 @@
+{
+  "prefix": "exp2",
+  "sources": [
+    {
+      "name": "dfire",
+      "max_n": 0
+    },
+    {
+      "name": "hiennguyen",
+      "max_n": 12000
+    }
+  ],
+  "model_size": "n",
+  "base_model": "yolo26n.pt",
+  "epochs": 40,
+  "patience": 15,
+  "imgsz": 640,
+  "enhance": false
+}
